@@ -7,6 +7,20 @@ BookVerse.navbar = {
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
     const overlay = document.getElementById('mobile-menu-overlay');
+    const providerSelect = document.getElementById('provider-select');
+
+    // Provider select logic
+    if (providerSelect) {
+      providerSelect.value = BookVerse.storage.getProvider();
+      providerSelect.addEventListener('change', (e) => {
+        BookVerse.storage.setProvider(e.target.value);
+        BookVerse.toast.info(`Switched to ${e.target.options[e.target.selectedIndex].text}`);
+        // Reload current view
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      });
+    }
 
     // Mobile menu toggle
     menuToggle?.addEventListener('click', () => {

@@ -20,6 +20,12 @@ function setCache(key, data) {
   }
 }
 
+// Gutendex API client
+const gutendex = axios.create({
+  baseURL: 'https://gutendex.com',
+  timeout: 15000,
+});
+
 // Open Library API client
 const openLibrary = axios.create({
   baseURL: process.env.OPEN_LIBRARY_BASE_URL || 'https://openlibrary.org',
@@ -57,6 +63,30 @@ function googleParams(params = {}) {
   const key = process.env.GOOGLE_BOOKS_API_KEY;
   if (key && key.trim()) params.key = key;
   return params;
+}
+
+// Normalize Gutendex book to unified format
+function normalizeGutendexBook(book) {
+  return {
+    id: book.id.toString(),
+    source: 'gutendex',
+    title: book.title || 'Untitled',
+    authors: book.authors?.map(a => a.name) || [],
+    cover: book.formats['image/jpeg'] || null,
+    coverMedium: book.formats['image/jpeg'] || null,
+    publishYear: null,
+    rating: null,
+    ratingsCount: book.download_count || 0,
+    subjects: book.subjects || [],
+    isbn: null,
+    language: book.languages || [],
+    editionCount: 1,
+    hasFulltext: !!book.formats['text/html'],
+    iaCollection: [],
+    readUrl: book.formats['text/html'] || book.formats['text/plain'] || null,
+    previewAvailable: !!book.formats['text/html'],
+    formats: book.formats, // Keep formats for download links
+  };
 }
 
 // Normalize Open Library book to unified format
@@ -118,6 +148,7 @@ function normalizeGoogleBook(vol) {
 }
 
 module.exports = {
+  gutendex,
   openLibrary,
   googleBooks,
   googleParams,
@@ -125,6 +156,7 @@ module.exports = {
   fetchWithRetry,
   getCached,
   setCache,
+  normalizeGutendexBook,
   normalizeOpenLibraryBook,
   normalizeGoogleBook,
 };

@@ -8,6 +8,7 @@ BookVerse.storage = {
     THEME: 'bookverse_theme',
     READING_HISTORY: 'bookverse_history',
     PREFERENCES: 'bookverse_prefs',
+    PROVIDER: 'bookverse_provider',
   },
 
   _get(key) {
@@ -76,6 +77,15 @@ BookVerse.storage = {
 
   setTheme(theme) {
     this._set(this.KEYS.THEME, theme);
+  },
+
+  // === Provider ===
+  getProvider() {
+    return this._get(this.KEYS.PROVIDER) || 'openlibrary';
+  },
+
+  setProvider(provider) {
+    this._set(this.KEYS.PROVIDER, provider);
   },
 
   // === Reading History ===

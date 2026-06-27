@@ -21,13 +21,15 @@ BookVerse.api = {
 
   // Search books
   async search(query, page = 1, limit = 20) {
-    const params = new URLSearchParams({ q: query, page, limit });
+    const provider = BookVerse.storage.getProvider();
+    const params = new URLSearchParams({ q: query, page, limit, provider });
     return this._fetch(`${this.BASE}/search?${params}`);
   },
 
   // Autocomplete suggestions
   async suggest(query) {
-    const params = new URLSearchParams({ q: query });
+    const provider = BookVerse.storage.getProvider();
+    const params = new URLSearchParams({ q: query, provider });
     return this._fetch(`${this.BASE}/search/suggest?${params}`);
   },
 
@@ -38,7 +40,8 @@ BookVerse.api = {
 
   // Get trending books
   async getTrending(limit = 12) {
-    return this._fetch(`${this.BASE}/trending?limit=${limit}`);
+    const provider = BookVerse.storage.getProvider();
+    return this._fetch(`${this.BASE}/trending?limit=${limit}&provider=${provider}`);
   },
 
   // Get categories list
@@ -48,7 +51,8 @@ BookVerse.api = {
 
   // Get books in a category
   async getCategoryBooks(category, page = 1, limit = 24) {
-    const params = new URLSearchParams({ page, limit });
+    const provider = BookVerse.storage.getProvider();
+    const params = new URLSearchParams({ page, limit, provider });
     return this._fetch(`${this.BASE}/categories/${category}?${params}`);
   },
 };

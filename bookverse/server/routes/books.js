@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { openLibrary, googleBooks, googleParams, getCached, setCache, normalizeOpenLibraryBook, normalizeGoogleBook } = require('../utils/apiClient');
+const { gutendex, openLibrary, googleBooks, googleParams, getCached, setCache, normalizeGutendexBook, normalizeOpenLibraryBook, normalizeGoogleBook } = require('../utils/apiClient');
 
 // GET /api/books/openlibrary/:id
 router.get('/openlibrary/:id', async (req, res, next) => {
@@ -61,6 +61,34 @@ router.get('/openlibrary/:id', async (req, res, next) => {
       readableEditions,
       hasFulltext: readableEditions.length > 0
     };
+
+    setCache(cacheKey, book);
+    res.json(book);
+  } catch (err) {
+    if (err.response && err.response.status === 404) {
+      return res.status(404).json({ error: true, message: 'Book not found' });
+    }
+    next(err);
+  }
+});
+
+// GET /api/books/gutendex/:id
+router.get('/gutendex/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const cacheKey = `book:gutendex:${id}`;
+    const cached = getCached(cacheKey);
+    if (cached) return res.json(cached);
+
+    const response = await gutendex.get(`/books/${id}`);
+    
+    if (!response.data) {
+      return res.status(404).json({ error: true, message: 'Book not found' });
+    }
+
+    const book = normalizeGutendexBook(response.data);
+    book.description = 'Read this free public domain book directly on BookVerse.';
 
     setCache(cacheKey, book);
     res.json(book);
