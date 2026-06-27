@@ -1,0 +1,131 @@
+/* ===================================
+   BookVerse Reader Styles
+   =================================== */
+
+.reader-page {
+  padding-top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--bg-glass-strong);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-glass);
+  height: 56px;
+  flex-shrink: 0;
+  margin-top: var(--navbar-height);
+}
+
+.reader-toolbar__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.reader-toolbar__back {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.reader-toolbar__back:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.reader-toolbar__title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reader-toolbar__author {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.reader-toolbar__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.reader-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.reader-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.reader-container__viewer {
+  width: 100%;
+  height: 100%;
+}
+
+.reader-container__fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: var(--space-2xl);
+}
+
+.reader-container__fallback-icon {
+  font-size: 5rem;
+  margin-bottom: var(--space-xl);
+  animation: float 3s ease-in-out infinite;
+}
+
+.reader-container__fallback-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.reader-container__fallback-text {
+  color: var(--text-muted);
+  margin-bottom: var(--space-xl);
+  max-width: 500px;
+}
+
+.reader-container__fallback-links {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .reader-toolbar {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .reader-toolbar__info {
+    gap: var(--space-sm);
+  }
+}

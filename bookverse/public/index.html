@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookVerse — Discover & Read Millions of Books Free</title>
+  <meta name="description" content="BookVerse is a premium e-book library where you can search, discover, and read millions of books online for free. Powered by Open Library & Google Books.">
+  <meta property="og:title" content="BookVerse — E-Book Library">
+  <meta property="og:description" content="Discover & read millions of books free online">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0e1a">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/reader.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="main-nav" class="navbar">
+    <div class="navbar__container">
+      <a href="#/" class="navbar__logo" id="nav-logo">
+        <span class="navbar__logo-icon">📚</span>
+        <span class="navbar__logo-text">Book<span class="text-gradient">Verse</span></span>
+      </a>
+      <div class="navbar__links" id="nav-links">
+        <a href="#/" class="navbar__link active" data-page="home" id="nav-home">Home</a>
+        <a href="#/categories" class="navbar__link" data-page="categories" id="nav-categories">Categories</a>
+        <a href="#/bookshelf" class="navbar__link" data-page="bookshelf" id="nav-bookshelf">
+          My Shelf
+          <span class="navbar__badge" id="shelf-badge" style="display:none">0</span>
+        </a>
+      </div>
+      <div class="navbar__actions">
+        <button class="navbar__theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon" id="theme-icon">🌙</span>
+        </button>
+        <button class="navbar__menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main content -->
+  <main id="app" class="main-content">
+    <!-- Pages will be rendered here by the router -->
+  </main>
+
+  <!-- Book detail modal -->
+  <div class="modal-overlay" id="book-modal-overlay">
+    <div class="modal" id="book-modal">
+      <button class="modal__close" id="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal__content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="main-footer">
+    <div class="footer__container">
+      <div class="footer__brand">
+        <span class="navbar__logo-icon">📚</span>
+        <span class="navbar__logo-text">Book<span class="text-gradient">Verse</span></span>
+        <p class="footer__tagline">Discover the universe of books</p>
+      </div>
+      <div class="footer__credits">
+        <p>Made by Rohit Ray ❤️</p>
+        <p class="footer__copyright">&copy; 2026 BookVerse. All book data from public APIs.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/utils/helpers.js"></script>
+  <script src="/js/utils/storage.js"></script>
+  <script src="/js/utils/router.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/components/toast.js"></script>
+  <script src="/js/components/loader.js"></script>
+  <script src="/js/components/bookCard.js"></script>
+  <script src="/js/components/bookGrid.js"></script>
+  <script src="/js/components/searchBar.js"></script>
+  <script src="/js/components/navbar.js"></script>
+  <script src="/js/components/modal.js"></script>
+  <script src="/js/components/reader.js"></script>
+  <script src="/js/pages/home.js"></script>
+  <script src="/js/pages/search.js"></script>
+  <script src="/js/pages/bookDetail.js"></script>
+  <script src="/js/pages/readerPage.js"></script>
+  <script src="/js/pages/bookshelf.js"></script>
+  <script src="/js/pages/categoriesPage.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

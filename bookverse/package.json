@@ -1,0 +1,19 @@
+{
+  "name": "bookverse",
+  "version": "1.0.0",
+  "description": "BookVerse — Premium E-Book Library App powered by Open Library & Google Books",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "keywords": ["ebooks", "library", "books", "reader", "open-library"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.0",
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.0",
+    "cors": "^2.8.5"
+  }
+}
