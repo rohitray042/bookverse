@@ -68,8 +68,13 @@ BookVerse.app = {
 
   _updateThemeIcon(theme) {
     const icon = document.getElementById('theme-icon');
+    const text = document.getElementById('theme-text');
     if (icon) {
-      icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      // If dark theme, show Sun (to switch to Day). If light theme, show Moon (to switch to Dark).
+      icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+    if (text) {
+      text.textContent = theme === 'dark' ? 'Day' : 'Dark';
     }
   },
 
