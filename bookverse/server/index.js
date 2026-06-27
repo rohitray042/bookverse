@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`\n📚 BookVerse server running at http://localhost:${PORT}\n`);
   });
