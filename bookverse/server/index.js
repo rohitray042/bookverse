@@ -40,6 +40,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n📚 BookVerse server running at http://localhost:${PORT}\n`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n📚 BookVerse server running at http://localhost:${PORT}\n`);
+  });
+}
+
+// Export the Express API for Vercel
+module.exports = app;
